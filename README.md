@@ -1,4 +1,4 @@
-# Simple Todo List
+# NYCDA Project Listing
 
 The Meteor Tutorial app.
 
