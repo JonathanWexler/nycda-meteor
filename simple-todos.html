@@ -1,0 +1,83 @@
+<head>
+  <title>WDI Projects</title>
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+  <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+</head>
+
+<body>
+
+
+  <div class="container">
+    <header>
+      <h1 class=" text-align">Gems {{incompleteCount}}</h1>
+
+      {{#if currentUser}}
+      <form class="new-task">
+        <input type="text" name="gem" placeholder="Gem Name" />
+        <input type="text" name="url" placeholder=" Gem URL (RubyGems/GitHub)" />
+        <button class="submit" type="submit">Submit Gem</button>
+      </form>
+      {{/if}}
+    </header>
+
+    <ul>
+      {{#each posts}}
+      {{> post}}
+      {{/each}}
+    </ul>
+  </div>
+
+  <br/>
+  
+
+  <div class="container">
+    <header>
+      <h1 class=" text-align">Group Projects </h1>
+
+      <div style="float:right;">
+        {{> loginButtons}}
+      </div>
+      {{#if currentUser}}
+      <form class="new-project">
+        <input type="text" name="project" placeholder=" Project Name" />
+        <input type="text" name="url" placeholder="Project URL (GitHub)" />
+        <button class="submit" type="submit">Submit Project</button>
+      </form>
+      {{/if}}
+    </header>
+
+    <ul>
+      {{#each projects}}
+      {{> project}}
+      {{/each}}
+    </ul>
+  </div>
+
+</body>
+
+<template name="post">
+  <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
+
+
+    {{#if isJon}}
+    <button class="delete">&times;</button>
+    {{/if}}
+
+    <span class="text">
+      <a href={{url}} style="text-decoration: none;"><strong class="gem">{{gem}}</strong></a>:{{username}}</span>
+    </li>
+  </template>
+
+  <template name="project">
+    <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
+
+
+      {{#if isOwner}}
+      <button class="delete">&times;</button>
+      {{/if}}
+
+      <span class="text">
+        <a href={{url}} style="text-decoration: none;"><strong class="gem">{{project}}</strong></a>:{{username}}</span>
+      </li>
+    </template>
